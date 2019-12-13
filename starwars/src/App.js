@@ -6,9 +6,12 @@ import "./App.css";
 
 import { Layout } from "./components/Layout";
 import { Card } from "./components/Card";
+import { Filter } from "./components/Filter";
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
+  const [filter, setFilter] = useState("");
+  const [filterResults, setFilterResults] = useState([]);
 
   useEffect(() => {
     axios
@@ -17,11 +20,20 @@ const App = () => {
       .catch(err => console.error(err));
   }, []);
 
+  useEffect(() => {
+    const results = characters.filter(character => {
+      return character.name.toLowerCase().includes(filter);
+    });
+
+    setFilterResults(results);
+  }, [characters, filter]);
+
   return (
     <div className="App">
       <Header>React Wars</Header>
+      <Filter filter={filter} setFilter={setFilter}></Filter>
       <Layout>
-        {characters.map(character => {
+        {filterResults.map(character => {
           return <Card key={character.created} data={character}></Card>;
         })}
       </Layout>
