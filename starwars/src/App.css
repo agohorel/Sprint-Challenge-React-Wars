@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap");
 
 .App {
   text-align: center;
@@ -9,3 +9,9 @@
   text-shadow: 1px 1px 5px #fff;
 }
 /* write your parent styles in here for your App.js */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

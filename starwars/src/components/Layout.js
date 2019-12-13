@@ -7,6 +7,7 @@ export const Layout = props => {
 
 const LayoutContainer = styled.div`
   max-width: 100%;
+  padding: 0 2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

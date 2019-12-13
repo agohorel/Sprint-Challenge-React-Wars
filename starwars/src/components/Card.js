@@ -5,14 +5,14 @@ import axios from "axios";
 export const Card = ({ data: { name, films, eye_color } }) => {
   const [filmList, setFilmList] = useState([]);
 
-    // useEffect(() => {
-    //   films.map(filmUrl => {
-    //     axios
-    //       .get(filmUrl)
-    //       .then(res => setFilmList(prevState => [...prevState, res.data]))
-    //       .catch(err => console.error(err));
-    //   });
-    // }, []);
+//   useEffect(() => {
+//     films.map(filmUrl => {
+//       axios
+//         .get(filmUrl)
+//         .then(res => setFilmList(prevState => [...prevState, res.data]))
+//         .catch(err => console.error(err));
+//     });
+//   }, []);
 
   return (
     <SWCard>
@@ -20,7 +20,7 @@ export const Card = ({ data: { name, films, eye_color } }) => {
       <EyeText>
         Eye Color: <EyeSpan color={eye_color}>{eye_color}</EyeSpan>
       </EyeText>
-      <h3>Appears in {films.length} films:</h3>
+      <h4>Appears in {films.length} films:</h4>
       {filmList.map(film => {
         return <FilmTitle key={film.created}>{film.title}</FilmTitle>;
       })}
@@ -36,7 +36,11 @@ const SWCard = styled.div`
   box-shadow: 0px 0px 5px rgba(0, 0, 0, .25);
   border-radius: 3px;
 
-   h2, h3 {
+  *:not(span):not(p){
+    padding: 1rem;
+  }
+
+   h2, h4 {
        color: white;
    }
 
