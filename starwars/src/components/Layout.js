@@ -6,8 +6,9 @@ export const Layout = props => {
 };
 
 const LayoutContainer = styled.div`
-  max-width: 50%;
+  max-width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
 `;

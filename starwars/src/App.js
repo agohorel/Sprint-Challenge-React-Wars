@@ -22,7 +22,8 @@ const App = () => {
       <h1 className="Header">React Wars</h1>
       <Layout>
         {characters.map(character => {
-          return <Card data={character}></Card>;
+          // console.log(character);
+          return <Card key={character.created} data={character}></Card>;
         })}
       </Layout>
     </div>
