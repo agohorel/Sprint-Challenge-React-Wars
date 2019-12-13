@@ -5,7 +5,15 @@ export const Filter = ({ filter, setFilter, currentPage, setCurrentPage }) => {
   return (
     <>
       <Wrapper>
-        <Button onClick={() => setCurrentPage(currentPage - 1)}>Prev</Button>
+        <Button
+          onClick={() =>
+            currentPage === 1
+              ? alert("Already at the beginning!")
+              : setCurrentPage(currentPage - 1)
+          }
+        >
+          Prev
+        </Button>
         <Input
           value={filter}
           onChange={e => setFilter(e.target.value)}
