@@ -16,15 +16,9 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://lambda-swapi.herokuapp.com/api/people/?$page=${currentPage.toString()}`
-      )
+      .get(`https://swapi.co/api/people/?page=${currentPage}`)
       .then(res => setCharacters(res.data.results))
       .catch(err => console.error(err));
-
-    console.log(
-      `https://lambda-swapi.herokuapp.com/api/people/?$page=${currentPage.toString()}`
-    );
   }, [currentPage]);
 
   useEffect(() => {
@@ -33,7 +27,7 @@ const App = () => {
     });
 
     setFilterResults(results);
-  }, [characters, filter, currentPage]);
+  }, [characters, filter]);
 
   return (
     <div className="App">
