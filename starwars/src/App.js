@@ -12,7 +12,6 @@ const App = () => {
   useEffect(() => {
     axios
       .get("https://swapi.co/api/people/")
-      // .then(res => console.log(res))
       .then(res => setCharacters(res.data.results))
       .catch(err => console.error(err));
   }, []);
@@ -22,8 +21,8 @@ const App = () => {
       <h1 className="Header">React Wars</h1>
       <Layout>
         {characters.map(character => {
-          // console.log(character);
           return <Card key={character.created} data={character}></Card>;
+          // return null;
         })}
       </Layout>
     </div>

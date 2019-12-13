@@ -5,15 +5,14 @@ import axios from "axios";
 export const Card = ({ data: { name, films, eye_color } }) => {
   const [filmList, setFilmList] = useState([]);
 
-  useEffect(() => {
-    films.map(filmUrl => {
-      axios
-        .get(filmUrl)
-        .then(res => setFilmList(prevState => [...prevState, res.data]))
-        // .then(console.log(filmList))
-        .catch(err => console.error(err));
-    });
-  }, []);
+//   useEffect(() => {
+//     films.map(filmUrl => {
+//       axios
+//         .get(filmUrl)
+//         .then(res => setFilmList(prevState => [...prevState, res.data]))
+//         .catch(err => console.error(err));
+//     });
+//   }, []);
 
   return (
     <SWCard>
