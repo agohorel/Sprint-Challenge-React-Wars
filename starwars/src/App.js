@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
 import "./App.css";
 
@@ -18,11 +19,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="Header">React Wars</h1>
+      <Header>React Wars</Header>
       <Layout>
         {characters.map(character => {
           return <Card key={character.created} data={character}></Card>;
-          // return null;
         })}
       </Layout>
     </div>
@@ -30,3 +30,11 @@ const App = () => {
 };
 
 export default App;
+
+const Header = styled.h1`
+  text-transform: uppercase;
+  font-size: 48px;
+  color: black;
+  background-color: white;
+  padding: 5px;
+`;

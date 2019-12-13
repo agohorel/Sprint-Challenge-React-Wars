@@ -5,14 +5,14 @@ import axios from "axios";
 export const Card = ({ data: { name, films, eye_color } }) => {
   const [filmList, setFilmList] = useState([]);
 
-//   useEffect(() => {
-//     films.map(filmUrl => {
-//       axios
-//         .get(filmUrl)
-//         .then(res => setFilmList(prevState => [...prevState, res.data]))
-//         .catch(err => console.error(err));
-//     });
-//   }, []);
+    // useEffect(() => {
+    //   films.map(filmUrl => {
+    //     axios
+    //       .get(filmUrl)
+    //       .then(res => setFilmList(prevState => [...prevState, res.data]))
+    //       .catch(err => console.error(err));
+    //   });
+    // }, []);
 
   return (
     <SWCard>
@@ -29,7 +29,6 @@ export const Card = ({ data: { name, films, eye_color } }) => {
 };
 
 const SWCard = styled.div`
-//   background-color: #b5bbc4;
   background-color: #1c1c1c;
   width: 24%
   margin: 1%;
