@@ -7,12 +7,12 @@ export const Card = ({ data: { name, films, eye_color } }) => {
 
   useEffect(() => {
     films.map(filmUrl => {
-      axios
+      return axios
         .get(filmUrl)
         .then(res => setFilmList(prevState => [...prevState, res.data]))
         .catch(err => console.error(err));
     });
-  }, []);
+  }, [films]);
 
   return (
     <SWCard>
