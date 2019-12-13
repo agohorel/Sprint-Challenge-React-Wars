@@ -12,13 +12,20 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   const [filter, setFilter] = useState("");
   const [filterResults, setFilterResults] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     axios
-      .get("https://swapi.co/api/people/")
+      .get(
+        `https://lambda-swapi.herokuapp.com/api/people/?$page=${currentPage.toString()}`
+      )
       .then(res => setCharacters(res.data.results))
       .catch(err => console.error(err));
-  }, []);
+
+    console.log(
+      `https://lambda-swapi.herokuapp.com/api/people/?$page=${currentPage.toString()}`
+    );
+  }, [currentPage]);
 
   useEffect(() => {
     const results = characters.filter(character => {
@@ -26,12 +33,17 @@ const App = () => {
     });
 
     setFilterResults(results);
-  }, [characters, filter]);
+  }, [characters, filter, currentPage]);
 
   return (
     <div className="App">
       <Header>React Wars</Header>
-      <Filter filter={filter} setFilter={setFilter}></Filter>
+      <Filter
+        filter={filter}
+        setFilter={setFilter}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      ></Filter>
       <Layout>
         {filterResults.map(character => {
           return <Card key={character.created} data={character}></Card>;
