@@ -18,24 +18,51 @@ export const Card = ({ data: { name, films, eye_color } }) => {
   return (
     <SWCard>
       <h2>{name}</h2>
-      <p>
+      <EyeText>
         Eye Color: <EyeSpan color={eye_color}>{eye_color}</EyeSpan>
-      </p>
-      <p>Appears in {films.length} films:</p>
+      </EyeText>
+      <h3>Appears in {films.length} films:</h3>
       {filmList.map(film => {
-        return <p key={film.created}>{film.title}</p>;
+        return <FilmTitle key={film.created}>{film.title}</FilmTitle>;
       })}
     </SWCard>
   );
 };
 
 const SWCard = styled.div`
-  background-color: #bbb;
+//   background-color: #b5bbc4;
+  background-color: #1c1c1c;
   width: 24%
   margin: 1%;
-  height: 500px;
+  min-height: 400px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, .25);
+  border-radius: 3px;
+
+   h2, h3 {
+       color: white;
+   }
+
+   @media (max-width: 1200px){
+       width: 48%;
+   }
+
+   @media (max-width: 500px){
+       width: 100%;
+   }
 `;
 
 const EyeSpan = styled.span`
   color: ${props => props.color};
+`;
+
+const EyeText = styled.p`
+  padding: 5px;
+  background-color: #2f3136;
+  color: white;
+`;
+
+const FilmTitle = styled.p`
+  font-size: 16px;
+  margin: 10px 0;
+  color: white;
 `;
