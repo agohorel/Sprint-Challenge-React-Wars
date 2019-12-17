@@ -1,19 +1,58 @@
-import React from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import styled from "styled-components";
+
+import "./App.css";
+
+import { Layout } from "./components/Layout";
+import { Card } from "./components/Card";
+import { Filter } from "./components/Filter";
 
 const App = () => {
-  // Try to think through what state you'll need for this app before starting. Then build out
-  // the state properties here.
+  const [characters, setCharacters] = useState([]);
+  const [filter, setFilter] = useState("");
+  const [filterResults, setFilterResults] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
-  // side effect in a component, you want to think about which state and/or props it should
-  // sync up with, if any.
+  useEffect(() => {
+    axios
+      .get(`https://swapi.co/api/people/?page=${currentPage}`)
+      .then(res => setCharacters(res.data.results))
+      .catch(err => console.error(err));
+  }, [currentPage]);
+
+  useEffect(() => {
+    const results = characters.filter(character => {
+      return character.name.toLowerCase().includes(filter);
+    });
+
+    setFilterResults(results);
+  }, [characters, filter]);
 
   return (
     <div className="App">
-      <h1 className="Header">React Wars</h1>
+      <Header>React Wars</Header>
+      <Filter
+        filter={filter}
+        setFilter={setFilter}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      ></Filter>
+      <Layout>
+        {filterResults.map(character => {
+          return <Card key={character.created} data={character}></Card>;
+        })}
+      </Layout>
     </div>
   );
-}
+};
 
 export default App;
+
+const Header = styled.h1`
+  text-transform: uppercase;
+  font-size: 48px;
+  color: black;
+  background-color: white;
+  padding: 5px;
+`;
